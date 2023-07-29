@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="box search">
+        <ul class="nav">
+            <li>Select page <i class="fas fa-sort-down"></i> </li>
+            
+            <%for (let i of navItems) {%>
+                <li><a href="/<%=i%>"><%=i%></a></li>
+            <%}%>
+        </ul>
+        <form>
+            <input type="text" placeholder="create new catgory" value="" name="createPage">
+            <button type="button" onclick="addCatgory ()">+</button>
+        </form>
+    </div>
+    <div class="box" id="heading">
+        <h1><%=day%></h1>
+        <h2><%=title%></h2>
+    </div>
+    <div class="box">
+       <% if (item.length) {%>
+            <%for ( let i of item[0].itemsCollection ) { %>
+
+                <div class="item">
+                    <form action="/delete/<%=title%>" method="post">
+                        <input type="checkbox" name="itemName"  value="<%=i%>" onchange="this.form.submit()">
+                    </form>
+                    <p><%=i%></p>
+                </div>
+    
+            <%}%>
+      <%}%>
+        <form action="/" method="POST" class="item">
+
+            <input type="text" placeholder="Type..." name="data"  autofocus>
+            <button type="submit" name="page" value="<%=title%>">+</button>
+        </form>
+    </div>
+
+</body>
+<script src="https://kit.fontawesome.com/7a1c8466e6.js" crossorigin="anonymous"></script>
+<script src="/js/createPage.js"></script>
+</html>
