@@ -1,14 +1,15 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-
+require('dotenv').config()
 const { connect , Schema , model } = require('mongoose')
 
 connectWithDB()
+
 async function connectWithDB() {
 
     try {
-        await connect('mongodb+srv://ak1667578:n3k2C7V0hMPCNyFh@cluster0.uawdcbp.mongodb.net/toDoList')
+        await connect(process.env.MONGODBALTAS)
         console.log('connected')
     } catch (error) {
         console.log(error)
@@ -126,7 +127,7 @@ app.post( '/', async (req,res)=>{
 
 
 
-app.listen( 3000, ()=> {
+app.listen( process.env.PORT, ()=> {
 
     console.log( 'Server is listing on port 3000' )
 })
